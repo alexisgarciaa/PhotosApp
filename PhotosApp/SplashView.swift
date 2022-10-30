@@ -10,16 +10,22 @@ import SwiftUI
 struct SplashView: View {
     @State var showHomeView: Bool = false
     var body: some View {
-        VStack{
-            TextCustomPhotoApp(text: "Photos Challenge", fontName: "Poppins-Bold", fontSize: 22)
-        }
-        .onAppear{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-                    showHomeView = true
-            })
-        }
-        .fullScreenCover(isPresented: $showHomeView) {
-            HomeSearchView()
+        NavigationView {
+            VStack{
+                TextCustomPhotoApp(text: "Photos Challenge", fontName: "Poppins-Bold", fontSize: 22)
+                NavigationLink(isActive: $showHomeView) {
+                    HomeSearchView()
+                        .navigationBarBackButtonHidden()
+                } label: {
+                    EmptyView()
+                }
+
+            }
+            .onAppear{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+                        showHomeView = true
+                })
+            }
         }
     }
 }

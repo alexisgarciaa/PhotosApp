@@ -11,15 +11,16 @@ struct HomeSearchView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
+            ZStack() {
             Color("BackgroundColor")
                     .edgesIgnoringSafeArea(.bottom)
                 VStack{
                     TextCustomPhotoApp(text: "Find Flickr photos by \nsearching names in the \nsearch bar below", fontName: "Poppins-Regular", fontSize: 18, fontColor: .black.opacity(0.60), alignment: .center, lineLimit: 5)
+                        .padding(.bottom, 350)
                 }
-                .navigationTitle("Photos Challenge")
-            .navigationBarTitleDisplayMode(.inline)
             }
+            .navigationTitle("Photos Challenge")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
