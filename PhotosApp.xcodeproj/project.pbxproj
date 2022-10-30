@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2AB4BDD0290EEAA100A91C53 /* PhotosAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB4BDCF290EEAA100A91C53 /* PhotosAppApp.swift */; };
-		2AB4BDD2290EEAA100A91C53 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB4BDD1290EEAA100A91C53 /* ContentView.swift */; };
 		2AB4BDD4290EEAA400A91C53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4BDD3290EEAA400A91C53 /* Assets.xcassets */; };
 		2AB4BDD7290EEAA400A91C53 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4BDD6290EEAA400A91C53 /* Preview Assets.xcassets */; };
 		2AB4BDE1290EEAA500A91C53 /* PhotosAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB4BDE0290EEAA500A91C53 /* PhotosAppTests.swift */; };
@@ -69,6 +68,12 @@
 		2AB4BE44290EF32E00A91C53 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4BE10290EF32E00A91C53 /* Poppins-ThinItalic.ttf */; };
 		2AB4BE45290EF32E00A91C53 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4BE10290EF32E00A91C53 /* Poppins-ThinItalic.ttf */; };
 		2AB4BE46290EF32E00A91C53 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4BE10290EF32E00A91C53 /* Poppins-ThinItalic.ttf */; };
+		2AB4BE49290EF84C00A91C53 /* HomeSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB4BE48290EF84C00A91C53 /* HomeSearchView.swift */; };
+		2AB4BE4A290EF84C00A91C53 /* HomeSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB4BE48290EF84C00A91C53 /* HomeSearchView.swift */; };
+		2AB4BE4B290EF84C00A91C53 /* HomeSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB4BE48290EF84C00A91C53 /* HomeSearchView.swift */; };
+		2AB4BE4E290EFC6600A91C53 /* TextCustomPhotoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB4BE4D290EFC6600A91C53 /* TextCustomPhotoApp.swift */; };
+		2AB4BE4F290EFC6600A91C53 /* TextCustomPhotoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB4BE4D290EFC6600A91C53 /* TextCustomPhotoApp.swift */; };
+		2AB4BE50290EFC6600A91C53 /* TextCustomPhotoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB4BE4D290EFC6600A91C53 /* TextCustomPhotoApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,7 +96,6 @@
 /* Begin PBXFileReference section */
 		2AB4BDCC290EEAA100A91C53 /* PhotosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AB4BDCF290EEAA100A91C53 /* PhotosAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosAppApp.swift; sourceTree = "<group>"; };
-		2AB4BDD1290EEAA100A91C53 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2AB4BDD3290EEAA400A91C53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AB4BDD6290EEAA400A91C53 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2AB4BDDC290EEAA500A91C53 /* PhotosAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotosAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +123,8 @@
 		2AB4BE0F290EF32E00A91C53 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		2AB4BE10290EF32E00A91C53 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		2AB4BE47290EF39900A91C53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2AB4BE48290EF84C00A91C53 /* HomeSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchView.swift; sourceTree = "<group>"; };
+		2AB4BE4D290EFC6600A91C53 /* TextCustomPhotoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCustomPhotoApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,16 +175,16 @@
 		2AB4BDCE290EEAA100A91C53 /* PhotosApp */ = {
 			isa = PBXGroup;
 			children = (
-				2AB4BE47290EF39900A91C53 /* Info.plist */,
+				2AB4BE4C290EFC4A00A91C53 /* Components */,
 				2AB4BDFB290EF0DE00A91C53 /* Model */,
 				2AB4BDFA290EF0D600A91C53 /* ViewModel */,
 				2AB4BDF9290EF0D000A91C53 /* View */,
-				2AB4BDFE290EF1C100A91C53 /* Fonts */,
 				2AB4BDFC290EF10200A91C53 /* SplashView.swift */,
 				2AB4BDCF290EEAA100A91C53 /* PhotosAppApp.swift */,
-				2AB4BDD1290EEAA100A91C53 /* ContentView.swift */,
 				2AB4BDD3290EEAA400A91C53 /* Assets.xcassets */,
+				2AB4BE47290EF39900A91C53 /* Info.plist */,
 				2AB4BDD5290EEAA400A91C53 /* Preview Content */,
+				2AB4BDFE290EF1C100A91C53 /* Fonts */,
 			);
 			path = PhotosApp;
 			sourceTree = "<group>";
@@ -211,6 +217,7 @@
 		2AB4BDF9290EF0D000A91C53 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2AB4BE48290EF84C00A91C53 /* HomeSearchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -252,6 +259,14 @@
 				2AB4BE10290EF32E00A91C53 /* Poppins-ThinItalic.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		2AB4BE4C290EFC4A00A91C53 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2AB4BE4D290EFC6600A91C53 /* TextCustomPhotoApp.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,8 +453,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AB4BDD2290EEAA100A91C53 /* ContentView.swift in Sources */,
+				2AB4BE49290EF84C00A91C53 /* HomeSearchView.swift in Sources */,
 				2AB4BDD0290EEAA100A91C53 /* PhotosAppApp.swift in Sources */,
+				2AB4BE4E290EFC6600A91C53 /* TextCustomPhotoApp.swift in Sources */,
 				2AB4BDFD290EF10200A91C53 /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,6 +465,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AB4BDE1290EEAA500A91C53 /* PhotosAppTests.swift in Sources */,
+				2AB4BE4F290EFC6600A91C53 /* TextCustomPhotoApp.swift in Sources */,
+				2AB4BE4A290EF84C00A91C53 /* HomeSearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +476,8 @@
 			files = (
 				2AB4BDEB290EEAA500A91C53 /* PhotosAppUITests.swift in Sources */,
 				2AB4BDED290EEAA500A91C53 /* PhotosAppUITestsLaunchTests.swift in Sources */,
+				2AB4BE50290EFC6600A91C53 /* TextCustomPhotoApp.swift in Sources */,
+				2AB4BE4B290EF84C00A91C53 /* HomeSearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
