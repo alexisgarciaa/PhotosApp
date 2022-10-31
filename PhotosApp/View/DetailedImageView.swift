@@ -11,6 +11,7 @@ struct DetailedImageView: View {
     @StateObject private var viewModel = CustomImageViewModel()
     @State var imageInfo: PhotosData
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.openURL) var openURL
     var body: some View {
         ZStack{
             if let image = viewModel.image{
@@ -23,7 +24,7 @@ struct DetailedImageView: View {
             
             VStack(alignment: .leading){
                 Button {
-                    
+                    openURL((URL(string:"https://live.staticflickr.com/\(imageInfo.server ?? "")/\(imageInfo.id ?? "")_\(imageInfo.secret ?? "")_\("b").jpg") ?? URL(string: "https://www.google.com"))!)
                 } label: {
                     TextCustomPhotoApp(text: "Open in browser >", fontName: "Poppins-Medium", fontSize: 12, fontColor: .white, alignment: .center, lineLimit: 1)
                         .padding(.vertical, 15)
