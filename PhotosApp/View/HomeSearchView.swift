@@ -26,7 +26,7 @@ struct HomeSearchView: View {
                             TextCustomPhotoApp(text: "Find Flickr photos by \nsearching names in the \nsearch bar below", fontName: "Poppins-Regular", fontSize: 18, fontColor: .black.opacity(0.60), alignment: .center, lineLimit: 3)
                                 .padding(.top, 100)
                         }else {
-                        ScrollView{
+                        ScrollView(showsIndicators: false){
                             LazyVGrid(columns: columns,spacing: 14){
                             ForEach(photosVm.dataArray, id: \.hashValue) { item in
                             NavigationLink {
@@ -46,13 +46,15 @@ struct HomeSearchView: View {
                                     })
                                 )
                             }
+                                if photosVm.loadingState {
+                                    ProgressView()
+                                }
                         }
                     }
                 }
                    
                 }
-                CustomSearchBar(textInput: $photosVm.searchText,names: $photosVm.names, action: {
-                })
+                CustomSearchBar(textInput: $photosVm.searchText,names: $photosVm.names)
                     .padding(.horizontal, 20)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                     .onChange(of: photosVm.searchText, perform: { newValue in
