@@ -30,7 +30,7 @@ struct PhotosDataModel: Codable {
     }
 }
 
-struct PhotosData: Codable {
+struct PhotosData: Codable, Hashable {
     let id: String?
     let owner: String?
     let secret: String?
@@ -40,6 +40,8 @@ struct PhotosData: Codable {
     let isPublic: Int?
     let isFriend: Int?
     let isFamily: Int?
+    let description: Content?
+    let dateTaken: String?
     
     enum CodingKeys: String, CodingKey{
         case id = "id"
@@ -51,5 +53,15 @@ struct PhotosData: Codable {
         case isPublic = "ispublic"
         case isFriend = "isfriend"
         case isFamily = "isfamily"
+        case description = "description"
+        case dateTaken = "datetaken"
+    }
+}
+
+struct Content: Codable, Hashable {
+    let content: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case content = "_content"
     }
 }

@@ -16,12 +16,12 @@ struct DetailedImageView: View {
             if let image = viewModel.image{
                 Image(uiImage: image)
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(maxWidth: .infinity,maxHeight: .infinity)
+                    .scaledToFill()
+                    .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: .infinity)
                     .edgesIgnoringSafeArea(.bottom)
             }
             
-            VStack{
+            VStack(alignment: .leading){
                 Button {
                     
                 } label: {
@@ -32,8 +32,24 @@ struct DetailedImageView: View {
                         .cornerRadius(5)
                         
                 }
-
+                .padding(.bottom, 5)
+                HStack{
+                    TextCustomPhotoApp(text: "Owener:", fontName: "Poppins-Medium", fontSize: 12, fontColor: .white, alignment: .center, lineLimit: 1)
+                    TextCustomPhotoApp(text: imageInfo.owner ?? "", fontName: "Poppins-Medium", fontSize: 12, fontColor: .white, alignment: .center, lineLimit: 1)
+                }
+                
+                HStack{
+                    TextCustomPhotoApp(text: "Taken at:", fontName: "Poppins-Medium", fontSize: 12, fontColor: .white, alignment: .center, lineLimit: 1)
+                    TextCustomPhotoApp(text: imageInfo.dateTaken ?? "", fontName: "Poppins-Medium", fontSize: 12, fontColor: .white, alignment: .center, lineLimit: 1)
+                }
+                TextCustomPhotoApp(text: imageInfo.description?.content ?? "Lorem ipsum dolor sit amet deos asd oihsl shjkjj ddjiiue eueuofo soduo soo", fontName: "Poppins-Medium", fontSize: 12, fontColor: .white, alignment: .leading, lineLimit: 4)
+                    .padding(.trailing, 150)
+                
+                
             }
+            .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .bottomLeading)
+            .padding(.leading, 25)
+            .padding(.bottom, 40)
         }
         .navigationTitle(imageInfo.title ?? "")
         .navigationBarBackButtonHidden()
@@ -54,6 +70,6 @@ struct DetailedImageView: View {
 
 struct DetailedImageView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailedImageView(imageInfo: PhotosData(id: "", owner: "", secret: "", server: "", farm: 0, title: "", isPublic: 0, isFriend: 0, isFamily: 0))
+        DetailedImageView(imageInfo: PhotosData(id: "", owner: "holasas", secret: "", server: "", farm: 0, title: "", isPublic: 0, isFriend: 0, isFamily: 0, description: Content(content: "holas a todos espero esten bien hola team holas team"),dateTaken: "holas mundo"))
     }
 }

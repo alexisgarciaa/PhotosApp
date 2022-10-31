@@ -32,6 +32,6 @@ struct CustomImage: View {
 
 struct CustomImage_Previews: PreviewProvider {
     static var previews: some View {
-        CustomImage(imageInfo: PhotosData(id: "", owner: "", secret: "", server: "", farm: 0, title: "", isPublic: 0, isFriend: 0, isFamily: 0))
+        DetailedImageView(imageInfo: PhotosData(id: "", owner: "holasas", secret: "", server: "", farm: 0, title: "", isPublic: 0, isFriend: 0, isFamily: 0, description: Content(content: "holas a todos espero esten bien"),dateTaken: "holas mundo"))
     }
 }

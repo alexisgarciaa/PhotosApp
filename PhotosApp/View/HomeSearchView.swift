@@ -27,11 +27,16 @@ struct HomeSearchView: View {
                         }else {
                         ScrollView{
                             LazyVGrid(columns: columns,spacing: 14){
-                            ForEach(photosVm.dataArray, id: \.id) { item in
-                                NavigationLink {
+                            ForEach(photosVm.dataArray, id: \.hashValue) { item in
+                            NavigationLink {
                                     DetailedImageView(imageInfo: item)
                                 } label: {
                                         CustomImage(imageInfo: item)
+                                }
+                                .onAppear{
+                                    if item.hashValue == photosVm.dataArray.last?.hashValue{
+                                        photosVm.fetchDataInfinity(perPage: 40, newSearch: true)
+                                    }
                                 }
                                 .simultaneousGesture(
                                 TapGesture()
@@ -53,7 +58,7 @@ struct HomeSearchView: View {
                             if newValue.isEmpty{
                                 photosVm.dataArray = []
                             }else {
-                                photosVm.fetchData(perPage: 30, page: 1)
+                                photosVm.fetchDataInfinity(perPage: 40, newSearch: false)
                             }
                         }
                     })
