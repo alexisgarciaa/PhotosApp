@@ -16,6 +16,7 @@ class HomeSearchViewModel: ObservableObject {
     @Published var count = 1
     @Published var newSearch: Bool = false
     @Published var names : [CNContact] = []
+    @Published var loadingState: Bool = false
     var cancelable = Set<AnyCancellable>()
     let dataService: DataServiceProtocol
     
@@ -25,15 +26,18 @@ class HomeSearchViewModel: ObservableObject {
         }
     
     func fetchDataInfinity(perPage: Int,newSearch: Bool) {
+        loadingState = true
         dataService.getData(perPage: perPage, page: count,searchText: searchText.replacingOccurrences(of: " ", with: ""))
             .sink { error in
                 print(error)
             } receiveValue: { [weak self] returnData in
                 if newSearch {
-                    self?.count += 1
-                    self?.dataArray.append(contentsOf: returnData.photos.photo)
+                        self?.count += 1
+                        self?.dataArray.append(contentsOf: returnData.photos.photo)
+                        self?.loadingState = false
                 }else{
                     self?.dataArray =  returnData.photos.photo
+                    self?.loadingState = false
                 }
             }
             .store(in: &cancelable)
