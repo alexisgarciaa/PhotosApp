@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Contacts
 
 struct HomeSearchView: View {
     @StateObject private var photosVm = HomeSearchViewModel()
@@ -50,7 +51,8 @@ struct HomeSearchView: View {
                 }
                    
                 }
-                CustomSearchBar(textInput: $photosVm.searchText)
+                CustomSearchBar(textInput: $photosVm.searchText,names: $photosVm.names, action: {
+                })
                     .padding(.horizontal, 20)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                     .onChange(of: photosVm.searchText, perform: { newValue in
@@ -67,6 +69,9 @@ struct HomeSearchView: View {
             }
             .navigationTitle("Photos Challenge")
             .navigationBarTitleDisplayMode(.inline)
+            .task(priority: .high) {
+                await  photosVm.fetchAllContacts()
+            }
         }
     }
 }

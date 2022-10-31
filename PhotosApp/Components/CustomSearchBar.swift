@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import Contacts
 
 struct CustomSearchBar: View {
     @Binding var textInput: String
+    @Binding var names : [CNContact]
+    var action: () -> ()
     var body: some View {
         RoundedRectangle(cornerRadius: 5)
             .stroke(lineWidth: 1.25)
@@ -16,11 +19,33 @@ struct CustomSearchBar: View {
             .frame(maxWidth: .infinity, maxHeight: 46)
             .overlay {
                 HStack{
-                    Image("menuBurger")
-                        .renderingMode(.template)
-                        .resizable()
-                        .frame(width: 17, height: 11)
-                        .padding(.leading, 15)
+                    Menu {
+                        ForEach(names,id: \.hashValue) { item in
+                            Button {
+                                textInput = item.givenName.capitalized
+                                print(item.givenName)
+                            } label: {
+                                Text("\(item.givenName)")
+                            }
+                        }
+                        
+                    } label: {
+                        Image("menuBurger")
+                            .renderingMode(.template)
+                            .resizable()
+                            .foregroundColor(.black)
+                            .frame(width: 17, height: 11)
+                            .padding(.leading, 15)
+                    }
+
+//                    Image("menuBurger")
+//                        .renderingMode(.template)
+//                        .resizable()
+//                        .frame(width: 17, height: 11)
+//                        .onTapGesture {
+//                            action()
+//                        }
+//                        .padding(.leading, 15)
                     TextField("Search", text: $textInput)
                         .font(.custom("Poppins-Medium", size: 15))
                         .padding(.leading, 15)
@@ -44,6 +69,6 @@ struct CustomSearchBar: View {
 
 struct CustomSearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        CustomSearchBar(textInput: .constant(""))
+        CustomSearchBar(textInput: .constant(""), names: .constant([CNContact()]), action: {})
     }
 }
