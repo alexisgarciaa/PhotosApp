@@ -14,31 +14,54 @@ struct HomeSearchView: View {
         GridItem(.flexible(minimum: 100), spacing: 1,alignment: nil),
         GridItem(.adaptive(minimum: 100), spacing: 1,alignment: nil),
         ]
+    @FocusState private var hideKeyboard: Bool
     var body: some View {
         NavigationView {
             ZStack() {
             Color("BackgroundColor")
                     .edgesIgnoringSafeArea(.bottom)
                 VStack{
-                    ScrollView{
-                        if photosVm.dataArray.isEmpty{
+                        if photosVm.dataArray.isEmpty || photosVm.dataArray == nil{
                             TextCustomPhotoApp(text: "Find Flickr photos by \nsearching names in the \nsearch bar below", fontName: "Poppins-Regular", fontSize: 18, fontColor: .black.opacity(0.60), alignment: .center, lineLimit: 3)
                                 .padding(.top, 100)
                         }else {
+                        ScrollView{
                             LazyVGrid(columns: columns,spacing: 14){
                             ForEach(photosVm.dataArray, id: \.id) { item in
-                                CustomImage(imageInfo: item)
+                                NavigationLink {
+                                    DetailedImageView(imageInfo: item)
+                                } label: {
+                                        CustomImage(imageInfo: item)
+                                }
+                                .simultaneousGesture(
+                                TapGesture()
+                                    .onEnded({ _ in
+                                        hideKeyboard = false
+                                    })
+                                )
                             }
                         }
                     }
                 }
+                   
                 }
+                CustomSearchBar(textInput: $photosVm.searchText)
+                    .padding(.horizontal, 20)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                    .onChange(of: photosVm.searchText, perform: { newValue in
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            if newValue.isEmpty{
+                                photosVm.dataArray = []
+                            }else {
+                                photosVm.fetchData(perPage: 30, page: 1)
+                            }
+                        }
+                    })
+                    .focused($hideKeyboard)
+                    .padding(.bottom,5)
             }
             .navigationTitle("Photos Challenge")
             .navigationBarTitleDisplayMode(.inline)
-            .onAppear{
-                photosVm.fetchData(perPage: 20, page: 1)
-            }
         }
     }
 }

@@ -23,7 +23,7 @@ struct CustomImage: View {
             }
         }
         .onAppear{
-            viewModel.downloadimage(serverId: imageInfo.server ?? "", photoId: imageInfo.id ?? "", secret: imageInfo.secret ?? "")
+            viewModel.downloadimage(serverId: imageInfo.server ?? "", photoId: imageInfo.id ?? "", secret: imageInfo.secret ?? "",resolution: "q")
         }
 
     }
