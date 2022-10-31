@@ -23,8 +23,8 @@ class DownloadImageService{
         return image
     }
     
-    func downloadimage(serverId: String, photoId: String, secret: String) -> AnyPublisher<UIImage?, Error>{
-        URLSession.shared.dataTaskPublisher(for: URL(string: "https://live.staticflickr.com/\(serverId)/\(photoId)_\(secret)_q.jpg")!)
+    func downloadimage(serverId: String, photoId: String, secret: String, resolution: String) -> AnyPublisher<UIImage?, Error>{
+        URLSession.shared.dataTaskPublisher(for: URL(string: "https://live.staticflickr.com/\(serverId)/\(photoId)_\(secret)_\(resolution).jpg")!)
             .map(handlerResponse)
             .mapError({$0})
             .eraseToAnyPublisher()
