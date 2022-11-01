@@ -9,8 +9,10 @@ import SwiftUI
 import Contacts
 
 struct CustomSearchBar: View {
+    @StateObject private var photosVm = HomeSearchViewModel()
     @Binding var textInput: String
     @Binding var names : [CNContact]
+    @Binding var showAlert: Bool
     var body: some View {
         RoundedRectangle(cornerRadius: 5)
             .stroke(lineWidth: 1.25)
@@ -30,6 +32,10 @@ struct CustomSearchBar: View {
                         
                     } label: {
                         BurgerItem()
+                    }
+                    .onTapGesture {
+                            photosVm.checkContactPermission()
+                            showAlert = photosVm.showAlert
                     }
                     
                     SearchBarIcons()
@@ -69,6 +75,6 @@ struct CustomSearchBar: View {
 
 struct CustomSearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        CustomSearchBar(textInput: .constant(""), names: .constant([CNContact()]))
+        CustomSearchBar(textInput: .constant(""), names: .constant([CNContact()]), showAlert: .constant(false))
     }
 }

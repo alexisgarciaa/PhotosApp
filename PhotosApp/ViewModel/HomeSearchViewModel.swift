@@ -17,6 +17,7 @@ class HomeSearchViewModel: ObservableObject {
     @Published var newSearch: Bool = false
     @Published var names : [CNContact] = []
     @Published var loadingState: Bool = false
+    @Published var showAlert: Bool = false
     var cancelable = Set<AnyCancellable>()
     let dataService: DataServiceProtocol
     
@@ -59,6 +60,19 @@ class HomeSearchViewModel: ObservableObject {
         }
         
     }
-
     
+    func checkContactPermission() {
+        switch CNContactStore.authorizationStatus(for: CNEntityType.contacts){
+        case .authorized:
+            print("acces")
+            showAlert = false
+        case.denied, .notDetermined:
+            print("denied")
+            DispatchQueue.main.async {
+                self.showAlert = true
+            }
+        default:
+            break
+        }
+    }
 }

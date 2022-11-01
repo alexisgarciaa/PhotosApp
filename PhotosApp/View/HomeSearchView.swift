@@ -10,12 +10,14 @@ import Contacts
 
 struct HomeSearchView: View {
     @StateObject private var photosVm = HomeSearchViewModel()
+    @StateObject var network = NetworkConnection()
     let columns:[GridItem] = [
         GridItem(.flexible(minimum: 100), spacing: 1,alignment: nil),
         GridItem(.flexible(minimum: 100), spacing: 1,alignment: nil),
         GridItem(.adaptive(minimum: 100), spacing: 1,alignment: nil),
         ]
     @FocusState private var hideKeyboard: Bool
+    @State var showAlert: Bool = false
     var body: some View {
         NavigationView {
             ZStack() {
@@ -54,7 +56,7 @@ struct HomeSearchView: View {
                 }
                    
                 }
-                CustomSearchBar(textInput: $photosVm.searchText,names: $photosVm.names)
+                CustomSearchBar(textInput: $photosVm.searchText,names: $photosVm.names,showAlert: $showAlert)
                     .padding(.horizontal, 20)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                     .onChange(of: photosVm.searchText, perform: { newValue in
@@ -68,11 +70,23 @@ struct HomeSearchView: View {
                     })
                     .focused($hideKeyboard)
                     .padding(.bottom,5)
+                if showAlert{
+                    CustomAlert(title: .constant("Permission not provided!!"), subtitle: .constant("In order to use the conctac list to search feature, we need permission\n go to Setting -> Privacy\n contacts"), imageName: .constant("alertImage")) {
+                        showAlert = false
+                    }
+                }
+                if !(network.connected ?? true){
+                    CustomAlert(title: .constant("Internet Connection"), subtitle: .constant("In order to use the App we need a internet connection"), imageName: .constant(nil)) {}
+                }
             }
             .navigationTitle("Photos Challenge")
             .navigationBarTitleDisplayMode(.inline)
             .task(priority: .high) {
+                //await photosVm.checkContactPermission()
                 await  photosVm.fetchAllContacts()
+            }
+            .onAppear{
+                photosVm.checkContactPermission()
             }
         }
     }
