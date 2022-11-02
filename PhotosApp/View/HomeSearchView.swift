@@ -73,6 +73,7 @@ struct HomeSearchView: View {
                 if showAlert{
                     CustomAlert(title: .constant("Permission not provided!!"), subtitle: .constant("In order to use the conctac list to search feature, we need permission\n go to Setting -> Privacy\n contacts"), imageName: .constant("alertImage")) {
                         showAlert = false
+                        photosVm.settingsOpener()
                     }
                 }
                 if !(network.connected ?? true){

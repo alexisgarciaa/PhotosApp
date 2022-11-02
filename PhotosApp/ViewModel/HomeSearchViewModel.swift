@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import Contacts
+import SwiftUI
 
 
 class HomeSearchViewModel: ObservableObject {
@@ -75,4 +76,12 @@ class HomeSearchViewModel: ObservableObject {
             break
         }
     }
+    
+       func settingsOpener(){
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }
+        }
 }
