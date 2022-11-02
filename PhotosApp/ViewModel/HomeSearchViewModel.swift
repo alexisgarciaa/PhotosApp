@@ -29,7 +29,7 @@ class HomeSearchViewModel: ObservableObject {
     
     func fetchDataInfinity(perPage: Int,newSearch: Bool) {
         loadingState = true
-        dataService.getData(perPage: perPage, page: count,searchText: searchText.replacingOccurrences(of: " ", with: ""))
+        dataService.getData(perPage: perPage, page: count,searchText: searchText.replacingOccurrences(of: " ", with: "").forSorting)
             .sink { error in
                 print(error)
             } receiveValue: { [weak self] returnData in

@@ -61,6 +61,7 @@ struct CustomSearchBar: View {
         TextField("Search", text: $textInput)
             .font(.custom("Poppins-Medium", size: 15))
             .padding(.leading, 15)
+            .accessibilityIdentifier("TextFieldSearchBar")
         Image(systemName: "line.diagonal")
             .renderingMode(.template)
             .font(.system(size: 30, weight: .thin))
